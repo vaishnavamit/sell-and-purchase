@@ -1,0 +1,62 @@
+.wishlist-css{
+    text-decoration: underline;
+    color: black;
+}
+
+.wishlist-css:hover{
+    text-decoration: none;
+    cursor: pointer;
+    color: black;
+}
+
+.login-css{
+    color:#002f34;
+    font-size: 20px;
+    font-weight:bold;
+    text-decoration: underline;
+    margin: 40px;
+}
+
+.login-css:hover{
+    text-decoration: none;
+}
+
+.logout-css{
+    background-color: #002f34;
+    color: white;
+    height: 44px;
+    width: 90px;
+}
+
+.sellBtn-css{
+    height: 44px;
+    width:90px;
+}
+
+.search-btn-css{
+    background-color: #002f34;
+    color:white;
+    height:44px;
+    width:50px;
+}
+
+.search-input-css{
+    width: 468px;
+    height: 44px;
+}
+
+.whole-header-css{
+    height:68px;
+    background-color: lightgray;
+}
+
+.sell-and-purchase-css{
+    color: black;
+    text-decoration: none;
+}
+
+.sell-and-purchase-css:hover{
+    cursor: pointer;
+    text-decoration: none;
+    color: black;
+}
