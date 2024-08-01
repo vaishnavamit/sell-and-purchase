@@ -7,7 +7,7 @@ import Category from './Category';
 export default function WishList() {
     const [productData,setProductData]=useState([]);     //Data of all the product items will be stored in this after fetching from database and than will be used for displaying on homepage
     
-    const GetWishListData=async()=>{
+    const GetData=async()=>{
       const userId=localStorage.getItem("userId");
       console.log(userId);
       const response=await fetch('http://localhost:4000/api/get-wishlist-item',{
@@ -26,14 +26,14 @@ export default function WishList() {
       }
     }
     useEffect(()=>{
-      GetWishListData();
+      GetData();
     },[])
     return (<>
   
     {/* Code to print header */}
 
     <div>
-      <Header setProductData={setProductData}/>
+      <Header setProductData={setProductData} getData={GetData}/>
     </div>
     <div>
       <Category setProductData={setProductData}></Category>

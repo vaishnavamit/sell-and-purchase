@@ -4,6 +4,7 @@ const router=express.Router();
 const mongoDB= require('../db');
 const User=require('../collectionSchema/User');
 const Product=require('../collectionSchema/Product');
+const Location=require('../collectionSchema/Location');
 const bcrypt=require('bcryptjs');
 const jwt = require('jsonwebtoken');
 const signature="WeAreUsingJsonWebToken";
@@ -35,6 +36,7 @@ const storage = multer.diskStorage({
         await User.create({
             name: req.body.name,
             email: req.body.email,
+            mobileNumber:req.body.mobileNumber,
             password: encryptedPassword
         })
         return res.json({success:true,msg:"Successfully signed up"});
@@ -75,16 +77,24 @@ const storage = multer.diskStorage({
 
 
 //code to add product
-    router.post('/add-product',upload.single('image'),async(req,res)=>{
+    router.post('/add-product',upload.array('images', 10),async(req,res)=>{
+        const details=JSON.parse(req.body.productDetails);
         console.log(req.body);
-        console.log(req.file);
+        const productImages=req.files.map((file)=>{return (file.path)});
         try{
+            const loc=await Location.findOne({District:req.body.district.toLowerCase(),State:req.body.state.toLowerCase()});
+            if(!loc){
+                await Location.create({District:req.body.district.toLowerCase(),State:req.body.state.toLowerCase()});
+            }
         await Product.create({
             ProductCategory: req.body.category,
             ProductName:req.body.name,
             ProductDescription:req.body.description,
             ProductPrice:req.body.price,
-            ProductImage:req.file.path,
+            ProductImage:productImages,
+            ProductDetail:details,
+            District:req.body.district,
+            State:req.body.state,
             addedBy:new mongoose.Types.ObjectId(req.body.userId)
         })
         res.json({success:true});
@@ -142,7 +152,7 @@ const storage = multer.diskStorage({
      router.post("/get-product-details/:pId",async(req,res)=>{
         //console.log(req.params);
         try{
-            const details=await Product.findOne({_id:req.params.pId});
+            const details=await Product.findOne({_id:req.params.pId}).populate('addedBy');
             res.json({success:true,product:details})
         }
         catch(error){

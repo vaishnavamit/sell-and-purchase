@@ -24,7 +24,7 @@ export default function Home() {
   {/* Code to print header */}
 
     <div>
-      <Header setProductData={setProductData}/>
+      <Header setProductData={setProductData} getData={GetData}/>
     </div>
     <div>
       <Category setProductData={setProductData}></Category>

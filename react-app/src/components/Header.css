@@ -60,3 +60,8 @@
     text-decoration: none;
     color: black;
 }
+
+.select-location-css{
+    width: 200px;
+    height: 44px;
+}

@@ -38,17 +38,13 @@ export default function Cards(props) {
   return (
   <div className='m-3'>
     <div className="card" onClick={()=>{handleOnClickCard(items._id)}}>
-        <img src={"http://localhost:4000/"+items.ProductImage} className="card-img-top" alt="..." />
-        {
-          props.callFromHome?(
+        <img src={"http://localhost:4000/"+items.ProductImage[0]} className="card-img-top" alt="..." />
         <div style={{position:"absolute", fontSize:"25px", backgroundColor:"white", borderRadius:"25px", margin:"3px", height:"45px", width:"45px"}}>
         <i className="fa-solid fa-heart" style={{margin:"9px"}} onClick={(e)=>{handleOnClickHeart(items._id,e)}}></i>
-        </div>):""
-        }
+        </div>
         <div className="card-body">
           <h5 className="card-title"><i class="fa-solid fa-indian-rupee-sign"></i> {items.ProductPrice}</h5>
           <p className="card-text">{items.ProductName}</p>
-          <a href="#" className="btn btn-primary"></a>
         </div>
       </div>
       </div>

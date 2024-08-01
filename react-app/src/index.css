@@ -24,3 +24,7 @@ code {
 .card:hover{
   cursor: pointer;
 }
+
+.add-detail-in-add-new-product-css:hover{
+  cursor: pointer;
+}

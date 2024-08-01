@@ -7,7 +7,8 @@ export default function Header(props) {
 
   const handleSearchButton=async()=>{
     const trimmedSearch=search.trim();
-    if(trimmedSearch==""){
+    if(trimmedSearch===""){
+      props.getData();
       return;
     }
     console.log(trimmedSearch);

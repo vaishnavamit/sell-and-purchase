@@ -2,7 +2,7 @@ import React, {useState} from 'react';
 import { Link } from 'react-router-dom';
 export default function Signup() {
 
-  const [credentials, setCredentials]=useState({name:"",email:"",password:""});
+  const [credentials, setCredentials]=useState({name:"",mobileNumber:"",email:"",password:""});
 
   const handleOnChange=(event)=>{
     setCredentials({...credentials,[event.target.name]:event.target.value})
@@ -15,7 +15,7 @@ export default function Signup() {
       headers:{
         'Content-Type':'application/json'
       },
-      body:JSON.stringify({name: credentials.name, email: credentials.email,password: credentials.password})
+      body:JSON.stringify({name: credentials.name, email: credentials.email,password: credentials.password,mobileNumber: credentials.mobileNumber})
     });
     const json=await response.json();
     console.log(json);
@@ -25,14 +25,26 @@ export default function Signup() {
 
   return (
     <div>
-      <div>WelCome to Signup Page</div>
-      <form onSubmit={handleFinalSubmit}>
+      <h4 style={{textAlign:"center",marginTop:"10px"}}>WelCome to Signup Page</h4>
+      <div className='d-flex flex-column align-items-center'>
+      <form className='border border-dark p-5' style={{marginTop:"100px", width:"800px"}} onSubmit={handleFinalSubmit}>
   <div className="mb-3">
     <label htmlFor="exampleInputEmail1" className="form-label">
       Name
     </label>
     <input
       type="text" name="name" value={credentials.name}
+      className="form-control"
+      id="exampleInputEmail1"
+      aria-describedby="emailHelp" onChange={handleOnChange}
+    />
+  </div>
+  <div className="mb-3">
+    <label htmlFor="exampleInputEmail1" className="form-label">
+      Mobile Number
+    </label>
+    <input
+      type="text" name="mobileNumber" value={credentials.mobileNumber}
       className="form-control"
       id="exampleInputEmail1"
       aria-describedby="emailHelp" onChange={handleOnChange}
@@ -65,8 +77,9 @@ export default function Signup() {
   <button type="submit" className="btn btn-primary" >
     Submit
   </button>
-  <Link to="/login" className='btn bg-danger'>Already a User</Link>
+  <Link to="/login" className='btn bg-danger ml-3'>Already a User</Link>
 </form>
+</div>
     </div>
   )
 }

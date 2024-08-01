@@ -30,8 +30,7 @@ export default function Login() {
 
   return (
     <>
-    <Header/>
-    <h5 style={{textAlign:"center",marginTop:"10px"}}>WelCome to Login Page</h5>
+    <h4 style={{textAlign:"center",marginTop:"10px"}}>WelCome to Login Page</h4>
     <div className='d-flex flex-column align-items-center'>
     <form className='border border-dark p-5' style={{marginTop:"100px"}} onSubmit={handleFinalSubmit}>
   <div className="mb-3">
